@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://06kxxgq7q5wd"]
+
+[ext_resource type="Script" uid="uid://fepng7oclo" path="res://texture_rect.gd" id="1_ohhw7"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_left = -20.0
+offset_top = -22.0
+offset_right = 20.0
+offset_bottom = 18.0
+script = ExtResource("1_ohhw7")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(20, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

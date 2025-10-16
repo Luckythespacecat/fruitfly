@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcbqk38vspsus"]
+
+[ext_resource type="Script" uid="uid://deopro8oc86yy" path="res://import_button.gd" id="1_qulwx"]
+
+[node name="ImportButton" type="Node2D"]
+script = ExtResource("1_qulwx")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -31.0
+offset_top = -29.0
+offset_right = 30.0
+offset_bottom = 30.0
