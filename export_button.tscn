@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://kddvkd8hunnm"]
+
+[ext_resource type="Script" uid="uid://ch6m4mfru617c" path="res://export_button.gd" id="1_s1dml"]
+[ext_resource type="Texture2D" uid="uid://c16uvvhstof7i" path="res://Assets/Object-UI1.png" id="2_m7jca"]
+[ext_resource type="Texture2D" uid="uid://dtrkh3o4kcjb4" path="res://Assets/Object-UI2.png" id="3_t4tl0"]
+[ext_resource type="FontFile" uid="uid://c5tdrjwv1ggbi" path="res://Assets/PixelPurl.ttf" id="4_rauc1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sr7rx"]
+font = ExtResource("4_rauc1")
+font_size = 100
+
+[node name="export_button" type="Node2D"]
+script = ExtResource("1_s1dml")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 18.0
+scale = Vector2(8, 8)
+texture_normal = ExtResource("2_m7jca")
+texture_pressed = ExtResource("3_t4tl0")
+texture_hover = ExtResource("2_m7jca")
+texture_disabled = ExtResource("3_t4tl0")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 95.00006
+offset_top = 12.0
+offset_right = 301.00006
+offset_bottom = 98.0
+scale = Vector2(0.7, 0.7)
+text = "Export"
+label_settings = SubResource("LabelSettings_sr7rx")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

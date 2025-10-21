@@ -1,12 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcbqk38vspsus"]
+[gd_scene load_steps=6 format=3 uid="uid://dcbqk38vspsus"]
 
 [ext_resource type="Script" uid="uid://deopro8oc86yy" path="res://import_button.gd" id="1_qulwx"]
+[ext_resource type="Texture2D" uid="uid://c16uvvhstof7i" path="res://Assets/Object-UI1.png" id="2_htplw"]
+[ext_resource type="FontFile" uid="uid://c5tdrjwv1ggbi" path="res://Assets/PixelPurl.ttf" id="2_q7wr8"]
+[ext_resource type="Texture2D" uid="uid://dtrkh3o4kcjb4" path="res://Assets/Object-UI2.png" id="3_bpsw1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_htplw"]
+font = ExtResource("2_q7wr8")
+font_size = 100
 
 [node name="ImportButton" type="Node2D"]
 script = ExtResource("1_qulwx")
 
-[node name="Button" type="Button" parent="."]
-offset_left = -31.0
-offset_top = -29.0
-offset_right = 30.0
-offset_bottom = 30.0
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 18.0
+scale = Vector2(8, 8)
+texture_normal = ExtResource("2_htplw")
+texture_pressed = ExtResource("3_bpsw1")
+texture_hover = ExtResource("2_htplw")
+texture_disabled = ExtResource("3_bpsw1")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 104.00001
+offset_top = 14.0
+offset_right = 310.0
+offset_bottom = 100.0
+scale = Vector2(0.7, 0.7)
+text = "Import"
+label_settings = SubResource("LabelSettings_htplw")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

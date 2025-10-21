@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://df6op0awpnjgw"]
+
+[ext_resource type="Texture2D" uid="uid://c16uvvhstof7i" path="res://Assets/Object-UI1.png" id="1_f8lws"]
+[ext_resource type="Script" uid="uid://6polhm2dbk6y" path="res://colorpicker.gd" id="1_omkmm"]
+[ext_resource type="Texture2D" uid="uid://dtrkh3o4kcjb4" path="res://Assets/Object-UI2.png" id="2_omkmm"]
+[ext_resource type="FontFile" uid="uid://c5tdrjwv1ggbi" path="res://Assets/PixelPurl.ttf" id="3_dc04t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mv3qp"]
+font = ExtResource("3_dc04t")
+font_size = 100
+
+[node name="Colorpicker" type="Node2D"]
+script = ExtResource("1_omkmm")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 47.0
+scale = Vector2(8, 8)
+texture_normal = ExtResource("1_f8lws")
+texture_pressed = ExtResource("2_omkmm")
+texture_hover = ExtResource("1_f8lws")
+texture_disabled = ExtResource("2_omkmm")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 560.0
+offset_bottom = 102.0
+scale = Vector2(0.6, 0.6)
+theme_override_font_sizes/font_size = 8
+text = "Backgroud Color"
+label_settings = SubResource("LabelSettings_mv3qp")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

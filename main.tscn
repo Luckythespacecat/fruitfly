@@ -1,7 +1,77 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5nxa4wlhqxod"]
+[gd_scene load_steps=13 format=3 uid="uid://b5nxa4wlhqxod"]
 
+[ext_resource type="Script" uid="uid://dgyx2wojodwpk" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dcbqk38vspsus" path="res://import_button.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://kddvkd8hunnm" path="res://export_button.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://dvqulspm3um3d" path="res://Assets/BackgroundUI.png" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://0oahbepxtg6n" path="res://window_area.gd" id="5_4c57u"]
+[ext_resource type="PackedScene" uid="uid://df6op0awpnjgw" path="res://colorpicker.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://b3gghnfgkdp1n" path="res://cursor.gd" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://bunjrcmp481kv" path="res://Assets/FruitFlyCursor1.png" id="6_kek77"]
+[ext_resource type="Texture2D" uid="uid://cl8fmtnfumdi7" path="res://Assets/FruitFlyCursor2.png" id="7_4c57u"]
+[ext_resource type="Texture2D" uid="uid://ujvbxskb3gps" path="res://Assets/FruitFlyCursor3.png" id="8_efxa6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+size = Vector2(144, 80.93701)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dg77c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kek77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4c57u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_efxa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kek77")
+}],
+"loop": false,
+"name": &"Click",
+"speed": 8.0
+}]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_1bvp3")
 
 [node name="ImportButton" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="export_button" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(0, 80)
+
+[node name="Camera2D" type="Camera2D" parent="export_button"]
+position = Vector2(960, 460)
+
+[node name="Window" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+position = Vector2(960, 544)
+scale = Vector2(8, 8.148074)
+texture = ExtResource("3_h2yge")
+
+[node name="WindowArea" type="Area2D" parent="Window"]
+script = ExtResource("5_4c57u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Window/WindowArea"]
+position = Vector2(0, 0.031852722)
+shape = SubResource("RectangleShape2D_kek77")
+
+[node name="Colorpicker" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(344, 80)
+
+[node name="ColorPicker" type="ColorPicker" parent="Colorpicker"]
+offset_left = -312.0
+offset_top = 144.0
+offset_right = -14.0
+offset_bottom = 751.0
+
+[node name="Cursor" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_dg77c")
+animation = &"Click"
+script = ExtResource("6_7mycd")
+
+[connection signal="color_changed" from="Colorpicker/ColorPicker" to="Colorpicker" method="_on_color_picker_color_changed"]
