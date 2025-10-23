@@ -23,14 +23,14 @@ func _ready() -> void:
 	await Engine.get_main_loop().process_frame
 	await Engine.get_main_loop().process_frame
 	global.LeftPanel = 1
+	$StaticBody2D/Area2D/ColorRect.position.x = $StaticBody2D/Area2D/ColorRect.position.x -  $StaticBody2D/CollisionShape2D.shape.extents.y
+	$StaticBody2D/Area2D/ColorRect.position.y = $StaticBody2D/Area2D/ColorRect.position.y -  $StaticBody2D/CollisionShape2D.shape.extents.y
+	
 
 func _process(delta: float) -> void:
-	if triggeronce == false:
-		$StaticBody2D/Area2D/ColorRect.size.x = $StaticBody2D/CollisionShape2D.shape.extents.x * 2
-		$StaticBody2D/Area2D/ColorRect.size.y = $StaticBody2D/CollisionShape2D.shape.extents.y * 2
-		$StaticBody2D/Area2D/ColorRect.position.x = $StaticBody2D/Area2D/ColorRect.position.x -  $StaticBody2D/CollisionShape2D.shape.extents.x
-		$StaticBody2D/Area2D/ColorRect.position.y = $StaticBody2D/Area2D/ColorRect.position.y -  $StaticBody2D/CollisionShape2D.shape.extents.y
-		triggeronce = true
+	if global.ColorAdjustDone == false:
+		$StaticBody2D/Area2D/ColorRect.size.x = $StaticBody2D/CollisionShape2D.shape.extents.x
+		$StaticBody2D/Area2D/ColorRect.size.y = $StaticBody2D/CollisionShape2D.shape.extents.y
 	$StaticBody2D/CollisionShape2D.shape.extents.x = $StaticBody2D/Area2D/CollisionShape2D.shape.extents.x
 	$StaticBody2D/CollisionShape2D.shape.extents.y = $StaticBody2D/Area2D/CollisionShape2D.shape.extents.y
 	
@@ -49,6 +49,7 @@ func _process(delta: float) -> void:
 		#triggeronce = true
 		#if shouldstaysize == false :
 			#scale = scale /2
+			
 
 	if Input.is_action_just_pressed("Click") :
 		clicked_rn = true
@@ -87,3 +88,7 @@ func _is_area_inside() -> bool:
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.name == "WindowArea" :
 		position = tempPosition
+func _on_bounds_width_drag_started() -> void:
+	triggeronce = false
+func _on_bounds_height_drag_started() -> void:
+	triggeronce = false

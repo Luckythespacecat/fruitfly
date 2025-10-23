@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cekkrpsyih1i7"]
+[gd_scene load_steps=3 format=3 uid="uid://cekkrpsyih1i7"]
 
 [ext_resource type="Texture2D" uid="uid://c16uvvhstof7i" path="res://Assets/Object-UI1.png" id="1_7arfi"]
+[ext_resource type="Script" uid="uid://c2a0k8jbkit15" path="res://object_controls.gd" id="1_t20md"]
 
 [node name="ObjectControls" type="Node2D"]
 scale = Vector2(5, 5)
+script = ExtResource("1_t20md")
 
 [node name="ScaleSlider" type="HSlider" parent="."]
 z_index = 6
@@ -12,6 +14,7 @@ offset_right = 64.0
 offset_bottom = 24.0
 max_value = 5.0
 step = 0.05
+metadata/_edit_use_anchors_ = true
 
 [node name="BoundsWidth" type="HSlider" parent="."]
 z_index = 6
@@ -20,6 +23,7 @@ offset_top = 24.0
 offset_right = 64.0
 offset_bottom = 48.0
 max_value = 500.0
+metadata/_edit_use_anchors_ = true
 
 [node name="BoundsHeight" type="HSlider" parent="."]
 z_index = 6
@@ -28,6 +32,7 @@ offset_top = 48.0
 offset_right = 64.0
 offset_bottom = 72.0
 max_value = 500.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 5
@@ -49,3 +54,8 @@ texture_filter = 1
 position = Vector2(32, 60.999996)
 scale = Vector2(1.5454545, 2.0454545)
 texture = ExtResource("1_7arfi")
+
+[connection signal="drag_ended" from="BoundsWidth" to="." method="_on_bounds_width_drag_ended"]
+[connection signal="drag_started" from="BoundsWidth" to="." method="_on_bounds_width_drag_started"]
+[connection signal="drag_ended" from="BoundsHeight" to="." method="_on_bounds_height_drag_ended"]
+[connection signal="drag_started" from="BoundsHeight" to="." method="_on_bounds_height_drag_started"]
